@@ -13,11 +13,14 @@ config = AppConfigurations()
 class FindData(RequestDispatcher):
     def __init__(self):
         self.ResultsData = {'alajazera': []}
-    def findTags(self,rawData):
-        tags = []
-        for i in rawData:
-            tags.append(i.text)
-        return tags
+
+    def findTags(self, rawData):
+        return rawData.text.split('|')
+        # tags = []
+        # for i in rawData:
+        #     tags.append(i.text)
+        # return tags
+
     def extractData(self, link: str, language) -> tuple:
 
         """method to extract title and tag"""
