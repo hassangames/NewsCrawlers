@@ -15,14 +15,7 @@ class FindData(RequestDispatcher):
         self.ResultsData = {'alajazera': []}
 
     def findTags(self, rawData):
-        print(rawData)
-        # print(rawData.text.split('|'))
-        # return rawData.text.split('|')
-        return ''
-        # tags = []
-        # for i in rawData:
-        #     tags.append(i.text)
-        # return tags
+        return rawData.text.split('|')
 
     def extractData(self, link: str, language) -> tuple:
 
@@ -33,7 +26,7 @@ class FindData(RequestDispatcher):
                 soup = BeautifulSoup(text, 'html.parser')
                 title = soup.findAll("h1")[0].text
                 category = self.findTags(soup.findAll("div", {"class": "topics"}))
-                published_date = soup.findAll("div", {"class": "date-simple"})[0].text
+                published_date = soup.find("div", {"class": "date-simple"})[0].text
                 self.ResultsData.get('alajazera').append(
                     dict(title=title, category=category, published_date=published_date, link=link))
                 if config.DEBUG:
