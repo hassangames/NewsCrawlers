@@ -15,6 +15,8 @@ class FindData(RequestDispatcher):
         self.ResultsData = {'alajazera': []}
 
     def findTags(self, rawData):
+        print(rawData.text)
+        print(rawData.text.split('|'))
         return rawData.text.split('|')
         # tags = []
         # for i in rawData:
