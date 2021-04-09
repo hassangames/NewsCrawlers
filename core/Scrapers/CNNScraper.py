@@ -33,6 +33,7 @@ class FindData(RequestDispatcher):
         try:
             if 'video' in link:
                 title = soup.find('h1', {"class": "Q2kXR_hT9c flipboard-title"}).text
+                print(self.FindTags({'class': '_38q8dhe3Fx'}))
                 category = self.FindTags({'class': '_38q8dhe3Fx'})
                 published_date = soup.find('div', {"class": "_2Jrc-IHPAI _6-YEXCu4FK"}).text
                 if config.DEBUG:

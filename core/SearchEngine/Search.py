@@ -15,7 +15,7 @@ from core.ext.http_Req import RequestDispatcher
 
 config = AppConfigurations()
 rt_scraper = RT_Scraper()
-alarabiya = AlarabiyaScrapper()
+alarabiya = AlarabiyaScrapper() # EXTREACT NEWS DATA
 aljazera = AjScrapper()
 
 
@@ -259,10 +259,11 @@ class CNN(Searcher, RequestDispatcher):
 
 
 class Alarabiya(RequestDispatcher):
-    """Alarabiya search engine using google service"""
-
+    """
+    EXTRACT NEWS LINKS
+    """
     def __init__(self, query):
-        self.newsLinks = []
+        self.newsLinks = [] # store news links
         self.SearchEngine = "https://www.alarabiya.net/tools/search?query={}".format(query)
         self.ENSearchEngine = "https://english.alarabiya.net/tools/search?query={}".format(query)
 
@@ -272,7 +273,7 @@ class Alarabiya(RequestDispatcher):
 
     def AR_getNewsLinks(self) -> list:
         """Gather response links and store them into list"""
-        results = self.MakeRequest(self.SearchEngine)
+        results = self.MakeRequest(self.SearchEngine) # HTTP REQUEST
         soup = BeautifulSoup(results, 'html.parser')
         news = soup.find_all('div', {"class": 'latest_content'})
         for link in news:
@@ -286,7 +287,7 @@ class Alarabiya(RequestDispatcher):
         """Gather response links and store them into list"""
         results = self.MakeRequest(self.ENSearchEngine)
         soup = BeautifulSoup(results, 'html.parser')
-        news = soup.find_all('div', attrs={'class': 'latest_content'})
+        news = soup.find_all('div', {'class': 'latest_content'})
         for link in news:
             if link.a.get_attribute_list('href')[0]:
                 if config.DEBUG:

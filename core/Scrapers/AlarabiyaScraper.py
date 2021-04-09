@@ -65,7 +65,7 @@ class FindData(RequestDispatcher):
             config.debug(level=1, data="Alarabyia extraction: {}".format(e))
 
     def performDataExtraction(self, links: list):
-        DataFetcherQueue = queue.Queue()
+        DataFetcherQueue = queue.Queue() #FIFO
         threads = []
         for link in links:
             DataFetcherQueue.put(link)
