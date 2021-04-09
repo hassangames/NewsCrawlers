@@ -240,7 +240,7 @@ class CNN(Searcher, RequestDispatcher):
         results = self.MakeRequest(target=self.API_CNN_EN.format(query.strip()), json=True)
         for news in results.get('result'):
             title = news.get('headline')
-            tags = news.get('section')
+            tags = [news.get('section')]
             published_date = news.get('firstPublishDate')
             link = news.get('url')
             self.Results.get("cnn").append(dict(title=title, tags=tags, published_date=published_date, link=link))
