@@ -31,7 +31,7 @@ class FindData(RequestDispatcher):
                 text = self.MakeRequest(target=link)
                 soup = BeautifulSoup(text, 'html.parser')
                 title = soup.findAll("h1")[0].text
-                category = soup.findAll("div", {"class": "topics"})[0].text
+                category = self.findTags(soup.findAll("div", {"class": "topics"}))
                 published_date = soup.findAll("div", {"class": "date-simple"})[0].text
                 self.ResultsData.get('alajazera').append(
                     dict(title=title, category=category, published_date=published_date, link=link))
