@@ -44,6 +44,7 @@ class FindData(RequestDispatcher):
             elif 'article' in link:
                 title = soup.find('h1', {"class": "_2JPm2UuC56 flipboard-title"}).text
                 category = self.FindTags({'class': 'AsCeVPiOdE'})
+                print(self.FindTags({'class': 'AsCeVPiOdE'}))
                 published_date = soup.find('div', {"class": "_2Jrc-IHPAI"}).text
                 if config.DEBUG:
                     print("Data For: {}\nTitle: {}\nCategory: {}\nPublished Date: {}".format(link, title, category,
